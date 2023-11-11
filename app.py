@@ -1,6 +1,16 @@
 # pylint: disable=missing-module-docstring
+import os
+import logging
 import duckdb
 import streamlit as st
+
+if "data" not in os.listdir():
+    logging.error(os.listdir())
+    logging.error("Creating data folder")
+    os.mkdir("data")
+
+if "exercises_sql_tables.duckdb" not in os.listdir("data"):
+    exec(open("init_db.py").read())
 
 con = duckdb.connect(database="data/exercises_sql_tables.duckdb", read_only=False)
 
@@ -8,7 +18,7 @@ with (st.sidebar):
     theme = st.selectbox(
         "What would you like to review?",
         ("cross_joins", "GroupBy", "window_functions"),
-        index=None,
+        index=0,
         placeholder="Select a theme...",
     )
 

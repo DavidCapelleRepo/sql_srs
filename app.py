@@ -13,6 +13,8 @@ if "exercises_sql_tables.duckdb" not in os.listdir("data"):
     logging.error("lecture duckdb file")
     exec(open("init_db.py").read())
 
+os.listdir("data")
+
 con = duckdb.connect(database="data/exercises_sql_tables.duckdb", read_only=False)
 
 with (st.sidebar):

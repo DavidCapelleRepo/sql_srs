@@ -10,11 +10,7 @@ if "data" not in os.listdir():
     os.mkdir("data")
 
 if "exercises_sql_tables.duckdb" not in os.listdir("data"):
-    logging.error("lecture duckdb file")
     exec(open("init_db.py").read())
-
-if "exercises_sql_tables.duckdb" in os.listdir("data"):
-    logging.error("File founded")
 
 con = duckdb.connect(database="data/exercises_sql_tables.duckdb", read_only=False)
 
@@ -22,7 +18,7 @@ with (st.sidebar):
     theme = st.selectbox(
         "What would you like to review?",
         ("cross_joins", "GroupBy", "window_functions"),
-        index=None,
+        index=0,
         placeholder="Select a theme...",
     )
 
